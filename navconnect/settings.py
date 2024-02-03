@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-hhx7%pacim8-o%ao5g5^s-$tv+ly_eiy8_#3z6&j56r#ynm$!p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "localhost"
+]
 
 
 # Application definition
@@ -77,14 +79,25 @@ WSGI_APPLICATION = 'navconnect.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'navconnect',
+#         'USER': 'postgres',
+#         'PASSWORD': '1234',
+#         'HOST': 'localhost',
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'navconnect',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',
-    }
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': 'navconnect',
+    'USER': 'jrneymar9977',
+    'PASSWORD': 'eQ7xNcHR8ISC',
+    'HOST': 'ep-shrill-resonance-a5s1mt35.us-east-2.aws.neon.tech',
+    'PORT': '5432',
+    'OPTIONS': {'sslmode': 'require', 'options':'endpoint=ep-shrill-resonance-a5s1mt35'},
+  }
 }
 
 

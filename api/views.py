@@ -45,7 +45,7 @@ class BusCreation(APIView):
             driver_id = serializer.validated_data['driver_id']
             routes_data = serializer.validated_data['routes']
             
-            print(Driver.objects.all())
+            # print(Driver.objects.all())
             driver = Driver.objects.all()[0]
             
             location_bus = Location.objects.create(current_latitude=0, current_longitude=0)
