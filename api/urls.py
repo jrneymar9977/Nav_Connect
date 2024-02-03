@@ -1,9 +1,11 @@
 from django.urls import path
-from . import views
+from .views import DriverDetail, CreateDriver, UpdateDriver, DeleteDriver, BusCreation, BusDetails
 
 urlpatterns = [
-    path('driver-detail/<str:pk>',views.driverdetail,name='driver-detail'),
-    path('create-driver/',views.createdriver,name='createdriver'),
-    path('update-driver/<str:pk>',views.updatedriver,name='updatedriver'),
-    path('delete-driver/<str:pk>',views.deletedriver,name='deletedriver'),
+    path('drivers/<int:pk>/', DriverDetail.as_view(), name='driver-detail'),
+    path('drivers/create/', CreateDriver.as_view(), name='create-driver'),
+    path('drivers/update/<int:pk>/', UpdateDriver.as_view(), name='update-driver'),
+    path('drivers/delete/<int:pk>/', DeleteDriver.as_view(), name='delete-driver'),
+    path('createbus/', BusCreation.as_view(), name='create_bus_api'),
+    path('busdetails/', BusDetails.as_view(), name='create_bus_api'),
 ]
