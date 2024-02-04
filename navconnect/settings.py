@@ -28,7 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     "192.168.29.180",
-    "localhost"
+    "localhost",
+    "nav-connect.vercel.app"
 ]
 
 
