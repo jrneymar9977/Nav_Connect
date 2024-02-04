@@ -20,3 +20,5 @@ application = ProtocolTypeRouter({
                 ws_urlpatterns
             )
 })
+
+app = application
