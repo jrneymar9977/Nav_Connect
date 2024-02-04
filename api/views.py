@@ -85,6 +85,7 @@ class BusDetails(APIView):
                 routes_data.append(route_data)
             
             bus_details = {
+                "bus_id": bus.id,
                 "bus_no": bus.busno,
                 "driver_id": bus.driver.id,
                 "driver_name": driver_name,

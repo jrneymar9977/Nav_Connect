@@ -27,6 +27,7 @@ SECRET_KEY = 'django-insecure-hhx7%pacim8-o%ao5g5^s-$tv+ly_eiy8_#3z6&j56r#ynm$!p
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    "192.168.29.180",
     "localhost"
 ]
 
@@ -34,6 +35,8 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    # 'channels',
+    'daphne',
     'api.apps.ApiConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -74,6 +77,13 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'navconnect.wsgi.application'
+ASGI_APPLICATION = 'navconnect.asgi.application'
+
+CHANNEL_LAYERS = {
+    "default" : {
+        "BACKEND" : 'channels.layers.InMemoryChannelLayer',
+    }
+}
 
 
 # Database
