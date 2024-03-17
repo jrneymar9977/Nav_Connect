@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import DriverSerializer, BusCreationSerializer
-from .models import Driver, Bus, Location, Routes, User
+from .models import Driver, Bus, Location, SubRoutes, User
 from routestTest import getBusDetails 
 
 
@@ -59,7 +59,7 @@ class BusCreation(APIView):
                 lang = route_data['lang']
 
                 location = Location.objects.create(current_latitude=lat, current_longitude=lang)
-                route = Routes.objects.create(route_name=routename, order=order, location=location,bus_id=bus.id)
+                route = SubRoutes.objects.create(route_name=routename, order=order, location=location,bus_id=bus.id)
                 
 
             return Response("Bus and routes created successfully", status=status.HTTP_201_CREATED)
@@ -111,7 +111,7 @@ class BusDetails(APIView):
             bus_lang = bus.location.current_longitude 
             
             route_data = []
-            routes = Routes.objects.filter(bus_id=bus.id)
+            routes = SubRoutes.objects.filter(bus_id=bus.id)
             for route in routes:
                 route = {
                     "route_name": route.route_name,
@@ -133,4 +133,3 @@ class BusDetails(APIView):
             bus_data.append(bus_details)
         
         return Response(bus_data)
-

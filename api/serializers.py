@@ -1,4 +1,4 @@
-from .models import Driver,Bus,Routes,Location,User
+from .models import Driver,Bus,SubRoutes,Location,User
 from rest_framework import serializers
 
 # class UserSerializer(serializers.ModelSerializer):
@@ -26,7 +26,7 @@ class BusSerializer(serializers.ModelSerializer):
 
 class RouteSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Routes
+        model = SubRoutes
         fields = '__all__'
 
 class LocationSerializer(serializers.ModelSerializer):
