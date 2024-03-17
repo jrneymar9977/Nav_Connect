@@ -19,6 +19,8 @@ from asgiref.sync import async_to_sync
 from api.models import Bus
 
 class BusLocationConsumer(WebsocketConsumer):
+
+    ##todo: make login for users and create separate channels for each users to send notification about the buses separatly
     def connect(self):
         self.busId = int(self.scope['url_route']['kwargs']["busid"])
         self.group_name = f"loc_{self.busId}"
@@ -34,6 +36,7 @@ class BusLocationConsumer(WebsocketConsumer):
                 {"response" : "bus id is not present"}
             ))
             self.close()
+        
         
     def disconnect(self, close_code):
         async_to_sync(self.channel_layer.group_discard)(

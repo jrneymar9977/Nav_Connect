@@ -7,13 +7,13 @@ import polyline
 # The main function that will handle connection and communication
 # with the server
 
-geometry = "}_tnA_kzgNTBIyC@q@?_AFaBZ{DPcBLwAJu@LkBRmCb@kAzAiFDyACi@MkM?w@Hs@TmA~@mDtAoFn@oB`A_C`BeDR]d@y@v@aBTm@L]rAgEb@wARk@^i@h@oALc@RmA\\wALe@FWv@cD^oBZeB@W@[@_@E_@[sAa@aAMYTIT_@d@_DNm@h@mB`AkDh@wBXo@H[r@uBV{@~@cDp@_ChAcExBcH`@kAtAuDRe@r@uBfAiDh@mBf@uCtAwFZ_Af@cBFUFW@Eh@sBtCoJ`@wAb@}Ad@iB`@qBPoAr@qI~@mNl@cH@OnAwP`@sEBqIAiD?OEcAGgIAsB?qDFkARq@Xm@V{@pAiDpCaHJQX{@Vo@P{@@o@GsAC{@Cw@@aALiA?e@@_AD}@No@vBoEnBoEnBgEl@uAzCyGxD}I|FaMvB}Eh@kAVk@z@kB~DcJxD_IrBuEvCqGrFuLrDkIfByDf@}@Tk@|ByERc@LS`AqB~@cEPo@N[t@u@h@WvFqCh@_@zAwABGfAaCp@{AhEsJXm@HMjCwF~BcFfAgBl@o@x@m@`Ag@pOoIZM^Kf@E~DCVE`A[hAg@HODg@Bm@@UAqBGeBEuB?cH@qAEy@DkADqA@UJgDKaA@gA?KEMKO]O]Ao@Bc@@GaAv@C~@Kf@MPINOJFH@RCbAKfBG?EBEFAFF?FCBn@b@NTJ\\HJPJvAd@d@t@p@~@RX@Br@dBZf@vAtAT^n@\\dARfBV\\FbDf@b@J\\Jt@b@bBIZ?rFBjABrD?f@?\\CrDUt@SxBg@d@IlD_@|AMv@CpCGXAbAA~@ADHBX@fCAfBr@n@dA|@fCzAxBn@XCfAgD|@}BPQx@u@d@i@Z{@Vq@Nu@^w@jABv@{AfA{BjAaCV{@f@iBPuAXmCzAP~AJdCThAJdAJv@HbAH\\BdAFlAHzADdBHT@tAJp@HxBJnAF`AJrAPnALrAFnAFrABd@BdAPT?\\m@pH{Kd@u@TPk@p@kHzKW`@`@?bFv@tARR@hANx@J\\D|@HLBvBd@H?d@@lAVbAMh@KdAa@ZCpBLtBRzBRvACTmCXgELeCHcAF_@Ha@`@oFfAFl@yIR?fAgOk@INiBLuALgA{Fw@_@GICQMOKlJeLr@cAdAiBV[`@[XYJSJ_@HUN_@XIL?zAd@^mG\\{FDm@BoAFm@Bc@Lq@GQq@[c@KmBN}@Ha@JWPc@jACZuCq@@WfAgDb@}ABQBk@Am@Ss@]}@e@oAwAaC{AoB}HaIwC}CwCuCsBqBQKwAm@m@[iBaBuDyDmHyHa@e@QWK_@A[j@AvAGCSiBkCsBuE}@qDi@gDSuDAwELg@KeAFeADQZuARgABsAKwAUyA}@}DWuBASLA|Em@dC_@vEy@xEo@bGy@vB]zAOvEq@p@M`L_BpCe@b@E`C]tJu@|G{@nA[HSdBn@~Al@`I|CxE~ArDrAfEpAZHhAVvAb@dBj@b@NrC`ArC~@PFjHzBtBj@vDbAr@NrEdAHB~GxAlHvBvGnBnB|@^RRN~AbBpDjEp@r@RNX\\l@d@RJd@Z`A\\n@NjANrIzApE|AxSdI`KtDZH|DlAdCr@t@NvA\\|HvAh@HdAP|@JrCRdBHxE^l@DzF^nBJd@DvDVnAJjM~@jIh@zJr@pEV~ANpDXrBLJ@t_@zCvBRbDVlCNrFNhGNzR`@R@zADpCFdJTfLV|JR`H`@xPFhGBjCNlAHhHnAfANt@?hDDlBCbQEtHEnBGfDQxAC|CKD?V?vEDvGd@dEN`@@?RAJO?"
+geometry = "}_tnA_kzgNTBIyC@q@?_AFaBZ{DPcBLwAJu@LkBRmCb@kAzAiFDyACi@MkM?w@Hs@TmA~@mDtAoFn@oB`A_C`BeDR]d@y@v@aBTm@L]rAgEb@wARk@^i@h@oALc@RmA\\wALe@FWv@cD^oBZeB@W@[@_@E_@[sAa@aAMYTIT_@d@_DNm@h@mB`AkDh@wBXo@H[r@uBV{@~@cDp@_ChAcExBcH`@kAtAuDRe@r@uBfAiDh@mBf@uCtAwFZ_Af@cBFUFW@Eh@sBtCoJ`@wAb@}Ad@iB`@qBPoAr@qI~@mNl@cH@OnAwP`@sEBqIAiD?OEcAGgIAsB?qDFkARq@Xm@V{@pAiDpCaHJQX{@Vo@P{@@o@GsAC{@Cw@@aALiA?e@@_AD}@No@vBoEnBoEnBgEl@uAzCyGxD}I|FaMvB}Eh@kAVk@z@kB~DcJxD_IrBuEvCqGrFuLrDkIfByDf@}@Tk@|ByERc@LS`AqB~@cEPo@N[t@u@h@WvFqCh@_@zAwABGfAaCp@{AhEsJXm@HMjCwF~BcFfAgBl@o@x@m@`Ag@pOoIZM^Kf@E~DCVE`A[hAg@HODg@Bm@@UAqBGeBEuB?cH@qAEy@DkADqA@UJgDLcAJc@NSbA}@NSRe@D]@cAA_@DcF?wAUiB}@sLU}Be@}BWgAwAgGqB}HgByFKq@Ea@QiCGa@K[kBeF_AiCi@_CS}@u@eDm@gCk@uBQw@?c@FMH?FJNh@v@bDtBvJz@hDx@dCl@dBh@r@l@hBLXd@E~A_@d@OL[MoBEg@Am@Dc@`AeCBEn@{@hAk@`F_BxAe@TMD[LuCCu@}@kBAKAUdQfC|BZfChAtCdDf@b@tFdDpG|CzBv@zAT`CBnBI^AdCUnA]^KrUgOFENKHJvD`AlE`A`Bd@vA\\v@JdBThANXDdDf@xBRp@DvB@tC?tD?tC@j@?h@CfCOpAUvFwAjGqBh@O`@M|Aa@|GoBjAe@rAo@b@If@Ab@FnE~A|@XvEpAd@J~@J|Bp@zA`@bAFv@T|ATrGvBF@l@RPFJL@FMl@q@tB_ArBqAzBq\\jb@X\\lRwUlJeLr@cAdAiBV[`@[XYJSJ_@HUN_@XIL?zAd@fKvCtBfAb@Lv@RRHf]bKdJjCbI`CdCx@lGbBzDfAbFbB|ARtIdCdBd@D_C?g@Ak@Ae@?WOwIAQQcFC_@K_CAUC]SyDAQOcDASEy@C_@OeDASY{FAWQkDAUMcFAa@EsA?OCq@Aa@]wMAc@o@a_@OmEOqEC_D?qADqADo@b@aGl@wHJeA~AkLO_@MYOO_MoCkBe@yBs@wF{A{DqAiCs@HYrC~@PFjHzBtBj@vDbAr@NrEdAHB~GxAlHvBvGnBnB|@^RRN~AbBpDjEp@r@RNX\\l@d@RJd@Z`A\\n@NjANrIzApE|AxSdI`KtDZH|DlAdCr@t@NvA\\|HvAh@HdAP|@JrCRdBHxE^l@DzF^nBJd@DvDVnAJjM~@jIh@zJr@pEV~ANpDXrBLJ@t_@zCvBRbDVlCNrFNhGNzR`@R@zADpCFdJTfLV|JR`H`@xPFhGBjCNlAHhHnAfANt@?hDDlBCbQEtHEnBGfDQxAC|CKD?V?vEDvGd@dEN`@@?RAJO?"
 cordinates = polyline.decode(geometry, 5)
 # print(cordinates)
 
 async def ws_client():
     print("WebSocket: Client Connected.")
-    url = "ws://192.168.29.180:8000/ws/buslocation/4"
+    url = "wss://congenial-adventure-v7ww59w77r4fpvwg-8000.app.github.dev/ws/buslocation/4"
     # Connect to the server
     async with websockets.connect(url) as ws:
 
@@ -31,4 +31,4 @@ async def ws_client():
         #     print(msg)
  
 # Start the connection
-asyncio.run(ws_client())
+asyncio.run(ws_client()) 

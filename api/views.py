@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .serializers import DriverSerializer, BusCreationSerializer
 from .models import Driver, Bus, Location, Routes, User
+from routestTest import getBusDetails 
 
 
 class DriverDetail(APIView):
@@ -94,5 +95,8 @@ class BusDetails(APIView):
                 "routes": routes_data
             }
             bus_data.append(bus_details)
-        
+        newBuses = getBusDetails()
+        print("newBuses")
+        bus_data += newBuses
+        print(bus_data)
         return Response(bus_data)
