@@ -87,7 +87,7 @@ class BusLocationConsumer(WebsocketConsumer):
         buses = Bus.objects.get(id=self.busId)
         print(buses)
         if(buses != None):
-            print(buses.location.current_latitude,buses.location.current_longitude)
+            # print(buses.location.current_latitude,buses.location.current_longitude)
             print("bus id : ", buses.id)
             buses.location.current_latitude = lat
             buses.location.current_longitude = lang

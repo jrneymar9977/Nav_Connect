@@ -17,22 +17,18 @@ class Location(models.Model):
     current_latitude = models.DecimalField(max_digits=9, decimal_places=6, default=0.0)
     current_longitude = models.DecimalField(max_digits=9, decimal_places=6, default=0.0)
     
+class Routes(models.Model):
+    route_title = models.CharField(max_length=100)
+
+class SubRoutes(models.Model):
+    route = models.ForeignKey(Routes, on_delete=models.CASCADE)
+    route_name = models.CharField(max_length=100)
+    order = models.IntegerField()
+    location = models.ForeignKey(Location, on_delete=models.CASCADE)
 
 class Bus(models.Model):
     busno = models.IntegerField(unique=True)
-    driver = models.ForeignKey(Driver,on_delete=models.CASCADE)
-    location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True, blank=True)
-
-class Routes(models.Model):
-    route_title = models.CharField(max_length=100)
-    bus_id = models.IntegerField(null=True,default=None)
-
-class SubRoutes(models.Model):
-    route = models.OneToOneField(Routes, on_delete=models.CASCADE)
-    route_name = models.CharField(max_length=100)
-    order = models.IntegerField()
-    location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True, blank=True)
-
-
-
-
+    route = models.OneToOneField(Routes,null=True, on_delete=models.SET_NULL)
+    driver = models.OneToOneField(Driver,null=True, on_delete=models.CASCADE)
+    location = models.OneToOneField(Location, null=True, on_delete=models.SET_NULL)
+    

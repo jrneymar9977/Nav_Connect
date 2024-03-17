@@ -97,16 +97,23 @@ CHANNEL_LAYERS = {
 #         'HOST': 'localhost',
 #     }
 # }
+# DATABASES = {
+#   'default': {
+#     'ENGINE': 'django.db.backends.postgresql',
+#     'NAME': 'navconnect',
+#     'USER': 'jrneymar9977',
+#     'PASSWORD': 'eQ7xNcHR8ISC',
+#     'HOST': 'ep-shrill-resonance-a5s1mt35.us-east-2.aws.neon.tech',
+#     'PORT': '5432',
+#     'OPTIONS': {'sslmode': 'require', 'options':'endpoint=ep-shrill-resonance-a5s1mt35'},
+#   }
+# }
+
 DATABASES = {
-  'default': {
-    'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'navconnect',
-    'USER': 'jrneymar9977',
-    'PASSWORD': 'eQ7xNcHR8ISC',
-    'HOST': 'ep-shrill-resonance-a5s1mt35.us-east-2.aws.neon.tech',
-    'PORT': '5432',
-    'OPTIONS': {'sslmode': 'require', 'options':'endpoint=ep-shrill-resonance-a5s1mt35'},
-  }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 

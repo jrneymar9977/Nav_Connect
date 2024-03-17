@@ -5,7 +5,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "navconnect.settings")
 
 django.setup()
 from django.contrib.auth.models import User
-from api.models import Driver, User
+from api.models import DriverView, User
 import csv
 
 def create_user(username, password):
@@ -13,7 +13,7 @@ def create_user(username, password):
     return user
 
 def create_driver(user, name, phone_number):
-    driver = Driver.objects.create(user=user, name=name, phone_number=phone_number)
+    driver = DriverView.objects.create(user=user, name=name, phone_number=phone_number)
     return driver
 
 def insert_data_from_csv(csv_file):
