@@ -23,11 +23,16 @@ class Bus(models.Model):
     driver = models.ForeignKey(Driver,on_delete=models.CASCADE)
     location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True, blank=True)
 
+class RoutesName(models.Model):
+    route_name = models.CharField(max_length=100)
+
 class Routes(models.Model):
+    route = models.IntegerField()
     route_name = models.CharField(max_length=100)
     order = models.IntegerField()
-    bus_id = models.IntegerField()
+    bus_id = models.IntegerField(null=True,default=None)
     location = models.ForeignKey(Location, on_delete=models.SET_NULL, null=True, blank=True)
+
 
 
 

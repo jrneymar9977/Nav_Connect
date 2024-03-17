@@ -65,6 +65,42 @@ class BusCreation(APIView):
             return Response("Bus and routes created successfully", status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+# class BusDetails(APIView):
+#     def get(self, request):
+#         buses = Bus.objects.all()
+#         bus_data = []
+#         for bus in buses:
+#             driver_name = bus.driver.name 
+#             bus_lat = bus.location.current_latitude 
+#             bus_lang = bus.location.current_longitude 
+            
+#             routes_data = []
+#             routes = Routes.objects.filter(bus_id=bus.id)
+#             for route in routes:
+#                 route_data = {
+#                     "route_name": route.route_name,
+#                     "order": route.order,
+#                     "lat": route.location.current_latitude,
+#                     "lang": route.location.current_longitude
+#                 }
+#                 routes_data.append(route_data)
+            
+#             bus_details = {
+#                 "bus_id": bus.id,
+#                 "bus_no": bus.busno,
+#                 "driver_id": bus.driver.id,
+#                 "driver_name": driver_name,
+#                 "bus_lat": bus_lat,
+#                 "bus_lang": bus_lang,
+#                 "routes": routes_data
+#             }
+#             bus_data.append(bus_details)
+#         newBuses = getBusDetails()
+#         print("newBuses")
+#         bus_data += newBuses
+#         print(bus_data)
+#         return Response(bus_data)
+    
 class BusDetails(APIView):
     def get(self, request):
         buses = Bus.objects.all()
@@ -74,16 +110,16 @@ class BusDetails(APIView):
             bus_lat = bus.location.current_latitude 
             bus_lang = bus.location.current_longitude 
             
-            routes_data = []
+            route_data = []
             routes = Routes.objects.filter(bus_id=bus.id)
             for route in routes:
-                route_data = {
+                route = {
                     "route_name": route.route_name,
                     "order": route.order,
                     "lat": route.location.current_latitude,
                     "lang": route.location.current_longitude
                 }
-                routes_data.append(route_data)
+                route_data.append(route)
             
             bus_details = {
                 "bus_id": bus.id,
@@ -92,11 +128,9 @@ class BusDetails(APIView):
                 "driver_name": driver_name,
                 "bus_lat": bus_lat,
                 "bus_lang": bus_lang,
-                "routes": routes_data
+                "routes": route_data
             }
             bus_data.append(bus_details)
-        newBuses = getBusDetails()
-        print("newBuses")
-        bus_data += newBuses
-        print(bus_data)
+        
         return Response(bus_data)
+
