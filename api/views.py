@@ -8,11 +8,19 @@ from routestTest import getBusDetails
 
 class DriverView(APIView):
     def get(self, request):
+        drivers = Driver.objects.all()
+        serializer_all = DriverSerializer(drivers, many=True)
         pk = request.data.get("pk")
-        driver = Driver.objects.get(id=pk)
-        serializer = DriverSerializer(driver)
-        return Response(serializer.data)
-
+        if pk:
+            driver = Driver.objects.get(id=pk)
+            serializer_specific = DriverSerializer(driver)
+            return Response({
+                'all_drivers': serializer_all.data,
+                'specific_driver': serializer_specific.data
+            })
+        else:
+            return Response(serializer_all.data)
+        
     def post(self, request):
         user = User.objects.create_user(**request.data.get("user"))
         d = dict(request.data)
@@ -138,6 +146,7 @@ class BusDetails(APIView):
                 })
             
             bus_details = {
+                "route_id": route_id.id,
                 "bus_id": bus.id,
                 "bus_no": bus.busno,
                 "driver_id": bus.driver.id,

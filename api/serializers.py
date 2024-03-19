@@ -11,9 +11,10 @@ from rest_framework import serializers
 #         return user
 
 class DriverSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(source='user.email', read_only=True) 
     class Meta:
         model = Driver
-        fields = '__all__'
+        fields = ['id', 'name', 'phone_number', 'email'] 
 
     def create(self, validated_data):
         driver = Driver.objects.create(**validated_data)
