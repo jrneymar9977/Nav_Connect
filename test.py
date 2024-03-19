@@ -13,8 +13,8 @@ cordinates = polyline.decode(geometry, 5)
 
 async def ws_client():
     print("WebSocket: Client Connected.")
-    url = "ws://192.168.29.180:8000/ws/buslocation/2"
-    # url = "wss://congenial-adventure-v7ww59w77r4fpvwg-8000.app.github.dev/ws/buslocation/4"
+    # url = "ws://192.168.29.180:8000/ws/buslocation/2"
+    url = "wss://congenial-adventure-v7ww59w77r4fpvwg-8000.app.github.dev/ws/buslocation/2"
     # Connect to the server
     async with websockets.connect(url) as ws:
 
