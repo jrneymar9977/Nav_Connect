@@ -31,4 +31,8 @@ class Bus(models.Model):
     route = models.OneToOneField(Routes,null=True, on_delete=models.SET_NULL)
     driver = models.OneToOneField(Driver,null=True, on_delete=models.CASCADE)
     location = models.OneToOneField(Location, null=True, on_delete=models.SET_NULL)
-    
+
+
+class LocationGeo(models.Model):
+    routeName = models.CharField(max_length=100, null=False, unique=True)
+    location = models.OneToOneField(Location, null=False, on_delete=models.CASCADE)

@@ -1,9 +1,12 @@
+import json
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import DriverSerializer, BusSerializer, RoutesSerializer, SubRoutesSerializer
-from .models import Driver, Bus, Routes, Location, SubRoutes, User
+from .models import Driver, Bus, LocationGeo, Routes, Location, SubRoutes, User
 from routestTest import getBusDetails 
+from django.db.models import Q
+import requests as httpreq
 
 
 class DriverView(APIView):
@@ -217,3 +220,33 @@ class CreateRoute(APIView):
 
         return Response({"response" : "ok" }, status=status.HTTP_201_CREATED)
    
+class SearchRoute(APIView):
+    def get(self, requests):
+        name = requests.query_params.get("route")
+        allroutes = {}
+        if( name == None and name == ''):
+            allroutes = LocationGeo.objects.all()
+        else:
+            allroutes = LocationGeo.objects.filter(Q(routeName__startswith=name[:1]) & Q(routeName__contains=name)).values()
+        return Response(allroutes)
+    
+    def post(self, request):
+        name = request.data.get("route")
+        apikey = "5b3ce3597851110001cf6248e39436fe480248a0901675a1fe89ff0e"
+        url = f'https://api.openrouteservice.org/geocode/search?api_key={apikey}&text={name}&focus.point.lon=80.007935&focus.point.lat=13.020614&boundary.country=IN&sources=openstreetmap,openaddresses&layers=street,venue&size=1'
+        result = httpreq.get(url)
+        print(json.loads(result.content))
+        print(name)
+        data = json.loads(result.content)["features"]
+        if(data != None and len(data) != 0):
+            data = data[0]["geometry"]["coordinates"]
+            print(data)
+            if not LocationGeo.objects.filter(routeName=name).exists():
+                loc = Location.objects.create(current_latitude=data[1], current_longitude=data[0])
+                LocationGeo.objects.create(routeName = name, location = loc)
+            return Response({
+                "lang" : data[0],
+                "lat" : data[1]
+            }, status=status.HTTP_200_OK)
+        return Response({"status" : False,
+                         "response" : "Not Found"}, status=status.HTTP_404_NOT_FOUND)
