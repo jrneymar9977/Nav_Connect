@@ -19,8 +19,14 @@ async def ws_client():
     async with websockets.connect(url) as ws:
 
        
-        for cor in cordinates:
-            loc = { "lat" : cor[0], "lang" : cor[1] }
+        # for cor in cordinates:
+        #     loc = { "lat" : cor[0], "lang" : cor[1] }
+        #     await ws.send(json.dumps(loc))
+        #     msg = await ws.recv()
+        #     print(msg)
+        #     sleep(2)
+        while(True):
+            loc = { "lat" : cordinates[0][0], "lang" : cordinates[0][1] }
             await ws.send(json.dumps(loc))
             msg = await ws.recv()
             print(msg)
