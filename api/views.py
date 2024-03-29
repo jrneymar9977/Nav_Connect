@@ -192,13 +192,10 @@ class CreateRoute(APIView):
         print(subroutes_data[0])
         # Validate route data
         route_serializer = RoutesSerializer(data=request.data)
-        # print("route_serializer : ")
-        # print(route_serializer)
         if not route_serializer.is_valid():
             print("route title not created")
             return Response(route_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        # Save route
         route_instance = route_serializer.save()
 
         # Validate and save subroutes
@@ -209,16 +206,30 @@ class CreateRoute(APIView):
             loc_instance = Location.objects.create(current_latitude=loc["lat"], current_longitude=loc["lang"])
             subroute_data["location"] = loc_instance.id
             subroute_serializer = SubRoutesSerializer(data=subroute_data)
-            # print(subroute_serializer)
             if subroute_serializer.is_valid():
                 subroute_serializer.save()
             else:
                 print("sub route not created")
-                # Rollback the route creation if subroute creation fails
                 route_instance.delete()
                 return Response(subroute_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         return Response({"response" : "ok" }, status=status.HTTP_201_CREATED)
+    
+    def get(self, request):
+        routes = Routes.objects.all()
+        data = []
+
+        for route in routes:
+            route_data = RoutesSerializer(route).data
+            route_data['route_id'] = route.id
+            subroutes_data = SubRoutesSerializer(route.subroutes_set.all(), many=True).data
+            route_data['subroutes'] = subroutes_data
+            data.append(route_data)
+
+        return Response(data, status=status.HTTP_200_OK)
+        
+
+
    
 class SearchRoute(APIView):
     def get(self, requests):
