@@ -1,9 +1,12 @@
+import json
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .serializers import DriverSerializer, BusSerializer, RoutesSerializer, SubRoutesSerializer
-from .models import Driver, Bus, Routes, Location, SubRoutes, User
+from .models import Driver, Bus, LocationGeo, Routes, Location, SubRoutes, User
 from routestTest import getBusDetails 
+from django.db.models import Q
+import requests as httpreq
 
 
 class DriverView(APIView):
@@ -189,13 +192,10 @@ class CreateRoute(APIView):
         print(subroutes_data[0])
         # Validate route data
         route_serializer = RoutesSerializer(data=request.data)
-        # print("route_serializer : ")
-        # print(route_serializer)
         if not route_serializer.is_valid():
             print("route title not created")
             return Response(route_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        # Save route
         route_instance = route_serializer.save()
 
         # Validate and save subroutes
@@ -206,16 +206,15 @@ class CreateRoute(APIView):
             loc_instance = Location.objects.create(current_latitude=loc["lat"], current_longitude=loc["lang"])
             subroute_data["location"] = loc_instance.id
             subroute_serializer = SubRoutesSerializer(data=subroute_data)
-            # print(subroute_serializer)
             if subroute_serializer.is_valid():
                 subroute_serializer.save()
             else:
                 print("sub route not created")
-                # Rollback the route creation if subroute creation fails
                 route_instance.delete()
                 return Response(subroute_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         return Response({"response" : "ok" }, status=status.HTTP_201_CREATED)
+<<<<<<< HEAD
    
 class TestEsp32(APIView):
     def get(self, request):
@@ -227,3 +226,52 @@ class TestEsp32(APIView):
         print("post method")
         print(request.data)
         return Response("respone ok", status=status.HTTP_200_OK)
+=======
+    
+    def get(self, request):
+        routes = Routes.objects.all()
+        data = []
+
+        for route in routes:
+            route_data = RoutesSerializer(route).data
+            route_data['route_id'] = route.id
+            subroutes_data = SubRoutesSerializer(route.subroutes_set.all(), many=True).data
+            route_data['subroutes'] = subroutes_data
+            data.append(route_data)
+
+        return Response(data, status=status.HTTP_200_OK)
+        
+
+
+   
+class SearchRoute(APIView):
+    def get(self, requests):
+        name = requests.query_params.get("route")
+        allroutes = {}
+        if( name == None and name == ''):
+            allroutes = LocationGeo.objects.all()
+        else:
+            allroutes = LocationGeo.objects.filter(Q(routeName__startswith=name[:1]) & Q(routeName__contains=name)).values()
+        return Response(allroutes)
+    
+    def post(self, request):
+        name = request.data.get("route")
+        apikey = "5b3ce3597851110001cf6248e39436fe480248a0901675a1fe89ff0e"
+        url = f'https://api.openrouteservice.org/geocode/search?api_key={apikey}&text={name}&focus.point.lon=80.007935&focus.point.lat=13.020614&boundary.country=IN&sources=openstreetmap,openaddresses&layers=street,venue&size=1'
+        result = httpreq.get(url)
+        print(json.loads(result.content))
+        print(name)
+        data = json.loads(result.content)["features"]
+        if(data != None and len(data) != 0):
+            data = data[0]["geometry"]["coordinates"]
+            print(data)
+            if not LocationGeo.objects.filter(routeName=name).exists():
+                loc = Location.objects.create(current_latitude=data[1], current_longitude=data[0])
+                LocationGeo.objects.create(routeName = name, location = loc)
+            return Response({
+                "lang" : data[0],
+                "lat" : data[1]
+            }, status=status.HTTP_200_OK)
+        return Response({"status" : False,
+                         "response" : "Not Found"}, status=status.HTTP_404_NOT_FOUND)
+>>>>>>> 7f5b00cfeae818b2e0e3748f73fddc93de3f3f3c
