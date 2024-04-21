@@ -217,3 +217,13 @@ class CreateRoute(APIView):
 
         return Response({"response" : "ok" }, status=status.HTTP_201_CREATED)
    
+class TestEsp32(APIView):
+    def get(self, request):
+        print("get method")
+        print(request.query_params )
+        print(request.data)
+        return Response("respone ok", status=status.HTTP_200_OK)
+    def post(self, request):
+        print("post method")
+        print(request.data)
+        return Response("respone ok", status=status.HTTP_200_OK)
