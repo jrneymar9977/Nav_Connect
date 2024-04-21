@@ -214,7 +214,6 @@ class CreateRoute(APIView):
                 return Response(subroute_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
         return Response({"response" : "ok" }, status=status.HTTP_201_CREATED)
-<<<<<<< HEAD
    
 class TestEsp32(APIView):
     def get(self, request):
@@ -226,7 +225,6 @@ class TestEsp32(APIView):
         print("post method")
         print(request.data)
         return Response("respone ok", status=status.HTTP_200_OK)
-=======
     
     def get(self, request):
         routes = Routes.objects.all()
@@ -274,4 +272,3 @@ class SearchRoute(APIView):
             }, status=status.HTTP_200_OK)
         return Response({"status" : False,
                          "response" : "Not Found"}, status=status.HTTP_404_NOT_FOUND)
->>>>>>> 7f5b00cfeae818b2e0e3748f73fddc93de3f3f3c
